@@ -18,7 +18,12 @@ class ListViewModel(
 
     private val _viewState = MutableLiveData<ListViewState>()
 
-    fun getListItems() {
+    init {
+        _viewState.value = ListViewState.Empty()
+        getListItems()
+    }
+
+    private fun getListItems() {
         disposables.add(
             repository.getListItems()
                 .subscribeOn(Schedulers.io())

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Zadanie</string>
     <string name="image_content_description">Item image</string>
+    <string name="empty_list_text">There is no data fetched. Please refresh.</string>
 </resources>
