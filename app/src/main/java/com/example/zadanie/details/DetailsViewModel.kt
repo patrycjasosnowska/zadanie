@@ -1,7 +1,7 @@
 package com.example.zadanie.details
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import com.example.zadanie.app.AppViewModel
 
-class DetailsViewModel(application: Application) : AndroidViewModel(application) {
+class DetailsViewModel(application: Application) : AppViewModel(application) {
 }

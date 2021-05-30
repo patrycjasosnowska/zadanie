@@ -7,7 +7,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val listModule = module {
-    single { ListRepository() }
+    single { ListRepository(get()) }
 
-    viewModel { ListViewModel(androidApplication()) }
+    viewModel { ListViewModel(androidApplication(), get()) }
 }
