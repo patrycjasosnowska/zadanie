@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Zadanie</string>
+    <string name="image_content_description">Item image</string>
 </resources>
