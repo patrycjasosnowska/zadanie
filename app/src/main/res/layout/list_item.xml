@@ -5,7 +5,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/list_item_image"
@@ -14,6 +14,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:contentDescription="@string/image_content_description" />
@@ -24,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             tools:text="Title"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/list_item_image" />
@@ -40,11 +42,9 @@
 
         <TextView
             android:id="@+id/list_item_description"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
+            android:layout_margin="20dp"
             tools:text="Pork chop pork belly buffalo capicola sausage burgdoggen, beef ribs tenderloin chuck ham hock tri-tip meatball doner.  Short loin strip steak drumstick, meatloaf turkey t-bone landjaeger corned beef.  Jerky shank brisket landjaeger, corned beef sirloin hamburger meatball ball tip chicken alcatra.  Tenderloin shoulder chislic, picanha ground round pork bresaola fatback drumstick.  Flank pastrami shank tenderloin buffalo alcatra turkey meatloaf tongue chicken salami capicola bacon.  Chislic strip steak hamburger kielbasa, pork chop kevin picanha.  Burgdoggen picanha meatloaf jerky capicola ribeye.\n\nTurkey meatloaf chicken, cow ham hock tongue porchetta picanha chuck meatball pig beef brisket.  Bresaola picanha venison meatloaf pork biltong.  Tongue flank kielbasa chicken ground round, sausage turkey.  Short ribs landjaeger ham turkey.  Hamburger shank chislic porchetta doner ribeye pork."
             app:layout_constraintTop_toBottomOf="@id/list_item_image"
             app:layout_constraintEnd_toEndOf="parent"

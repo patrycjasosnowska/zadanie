@@ -38,7 +38,7 @@ class ListActivity : AppCompatActivity() {
         val linearLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         libraryItemsRecyclerView.layoutManager = linearLayoutManager
 
-        listItemsRecyclerAdapter = ListRecyclerAdapter(binding.viewState!!.data)
+        listItemsRecyclerAdapter = ListRecyclerAdapter(binding.viewState!!.data, this)
         libraryItemsRecyclerView.adapter = listItemsRecyclerAdapter
     }
 }
