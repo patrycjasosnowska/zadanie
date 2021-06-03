@@ -26,7 +26,7 @@ class ListActivity : AppCompatActivity() {
 
     private lateinit var listItemsRecyclerAdapter: ListRecyclerAdapter
 
-    private val openPostActivity =
+    private val openItemDetails =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 Log.d(javaClass.name, "Intent result: ok")
@@ -58,7 +58,7 @@ class ListActivity : AppCompatActivity() {
         listItemsRecyclerAdapter.onItemAction = { action ->
             when (action) {
                 is ClickItem -> {
-                    openPostActivity.launch(
+                    openItemDetails.launch(
                         Intent(this, DetailsActivity::class.java).apply {
                             putExtra(getString(R.string.intent_key_uri), action.url)
                         }
