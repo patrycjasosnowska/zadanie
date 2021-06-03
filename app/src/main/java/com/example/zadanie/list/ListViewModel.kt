@@ -23,7 +23,7 @@ class ListViewModel(
         getListItems()
     }
 
-    private fun getListItems() {
+    fun getListItems() {
         disposables.add(
             repository.getListItems()
                 .subscribeOn(Schedulers.io())

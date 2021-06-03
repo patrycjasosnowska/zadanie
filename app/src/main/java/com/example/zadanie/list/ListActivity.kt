@@ -40,11 +40,19 @@ class ListActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_list)
 
+        setupRecycler()
+
         listViewModel.viewState.observe(this) { state ->
             binding.viewState = state
             if (state is ListViewState.Data) {
-                setupRecycler()
+                listItemsRecyclerAdapter.submitList(state.data)
+                listItemsRecyclerAdapter.notifyDataSetChanged()
+                binding.listSwipeRefresh.isRefreshing = false
             }
+        }
+
+        binding.listSwipeRefresh.setOnRefreshListener {
+            listViewModel.getListItems()
         }
     }
 
@@ -54,7 +62,7 @@ class ListActivity : AppCompatActivity() {
         val linearLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         listItemsRecyclerView.layoutManager = linearLayoutManager
 
-        listItemsRecyclerAdapter = ListRecyclerAdapter(binding.viewState!!.data, this)
+        listItemsRecyclerAdapter = ListRecyclerAdapter(this)
         listItemsRecyclerAdapter.onItemAction = { action ->
             when (action) {
                 is ClickItem -> {
