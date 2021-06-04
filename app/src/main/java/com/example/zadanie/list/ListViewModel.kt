@@ -5,12 +5,16 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.zadanie.app.AppViewModel
+import com.example.zadanie.data.ListItemDao
+import com.example.zadanie.data.ListItemEntity
+import com.example.zadanie.utils.extensions.mapToEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class ListViewModel(
     application: Application,
-    private val repository: ListRepository
+    private val repository: ListRepository,
+    private val listItemDao: ListItemDao
 ) : AppViewModel(application) {
 
     val viewState: LiveData<ListViewState>
@@ -27,7 +31,6 @@ class ListViewModel(
         disposables.add(
             repository.getListItems()
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .map { items ->
                     if (items.isEmpty()) {
                         ListViewState.Empty()
@@ -35,6 +38,11 @@ class ListViewModel(
                         ListViewState.Data(data = items)
                     }
                 }
+                .doOnNext { items ->
+                    val mappedItems = items.data.mapToEntity()
+                    saveItemsToDatabase(mappedItems)
+                }
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     { state ->
                         _viewState.value = state
@@ -44,5 +52,9 @@ class ListViewModel(
                     }
                 )
         )
+    }
+
+    private fun saveItemsToDatabase(items: List<ListItemEntity>) {
+        listItemDao.insert(items)
     }
 }

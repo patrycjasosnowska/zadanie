@@ -1,6 +1,7 @@
 package com.example.zadanie.app
 
 import android.app.Application
+import com.example.zadanie.data.di.dataModule
 import com.example.zadanie.details.di.detailsModule
 import com.example.zadanie.list.di.listModule
 import com.example.zadanie.networking.di.networkingModule
@@ -16,7 +17,8 @@ class BaseApplication : Application() {
             modules(
                 listModule,
                 detailsModule,
-                networkingModule
+                networkingModule,
+                dataModule
             )
         }
     }

@@ -9,5 +9,5 @@ import org.koin.dsl.module
 val listModule = module {
     single { ListRepository(get()) }
 
-    viewModel { ListViewModel(androidApplication(), get()) }
+    viewModel { ListViewModel(androidApplication(), get(), get()) }
 }
